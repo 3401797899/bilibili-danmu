@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>刷盗版视频，看阿逼弹幕</title>
+	<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/hls.js/dist/hls.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fonts.css@2.0.0/dist/fonts.css">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="font-song">
+<div class="card mb-3">
+<div class="card">
+<div class="card-body">
+  <div id="player"></div>
+  </div>
+</div>
+    <div class="card-body">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">视频播放地址：</span>
+  </div>
+  <input type="text" class="form-control" id="videourl" aria-describedby="basic-addon3">
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">弹幕地址Json：</span>
+  </div>
+  <input type="text" class="form-control" id="danmuurl" aria-describedby="basic-addon3">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" onclick="loading()">提交播放</button>
+  </div>
+</div>
+  </div>
+</div>
+</body>
+<script>
+
+function load(url,comment){
+const dp = new DPlayer({
+        container: document.getElementById('player'),
+        preload: 'none',
+        screenshot: true,
+        video: {
+            url: url
+        },
+        danmaku: {
+            addition: [comment]
+        }
+});
+}
+
+function loading(){
+  $(".player").empty("");
+	var url = $("#videourl").val();
+  alert(url);
+	var danmu = $("#danmuurl").val();
+	load(url,danmu);
+}
+
+load("https://v4.dious.cc/20201205/z6qjG8lD/index.m3u8","http://192.168.1.107/comment.php");
+</script>
+
+<div style="position: fixed;bottom: 0;text-align: center;">
+<span class="font-kai"0>&copy 2020-2021 白</span>
+</div>
+</html>
