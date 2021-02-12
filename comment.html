@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>弹幕获取 - 白</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div class="card">
+  <div class="card-body">
+    <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="番剧分享地址" id="url">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="load()">获取</button>
+  </div>
+</div>
+  </div>
+  <div class="card-body" id="cid-content"></div>
+</div>
+</body>
+<script>
+function load(){
+	var url = "http://biliapi.52msr.cn/comment/getCid.php?url="+$("#url").val();
+	$.ajax({
+		url: url,
+		dataType: "json",
+		success:function(result){
+			$("#cid-content").empty();
+			for(i = 0;i < result.length;i++){
+				var content = "名称："+result[i]['name']+"<br>地址：http://biliapi.52msr.cn/comment.php?cid="+result[i]['cid']+"<br>";
+				$("#cid-content").append(content);
+			}
+		},
+		error:function(){
+			alert("获取失败！");
+		}
+	})
+}
+</script>
+
+</html>
